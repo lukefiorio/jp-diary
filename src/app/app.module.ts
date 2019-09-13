@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// allows for http request (via backend service)
+import { HttpClientModule } from '@angular/common/http';
 // allows us to use angular forms (e.g. with ngModel)
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +14,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, ProfileComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
