@@ -1,0 +1,10 @@
+<div>
+  <div *ngFor="let user of users">
+    <div>
+      <!-- style.color needs to be in quotes otherwise it will look for a variable -->
+      <span [style.color]="'blue'" *ngIf="user.username === 'user1'"> Username: {{ user.username }} </span>
+      <span *ngIf="user.username !== 'user1'">Username: {{ user.username }} </span>
+    </div>
+    <div>Age: {{ user.age }}</div>
+  </div>
+</div>
