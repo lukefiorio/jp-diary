@@ -4,13 +4,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SessionService {
-  constructor() {}
+  user = {
+    loggedIn: false,
+    username: '',
+  };
 
-  getSession() {}
+  constructor() {
+    const userString = window.localStorage.getItem('user');
+    try {
+      if (userString) {
+        this.user = JSON.parse(userString);
+      } else {
+        console.log('user not found');
+      }
+    } catch (err) {
+      console.log('could not parse user');
+    }
+  }
 
-  setSession(username) {}
+  getSession() {
+    return this.user;
+  }
 
-  clearSession() {}
+  setSession(username) {
+    // save to memeory
+    this.user.username = username;
+    this.user.loggedIn = true;
 
-  isLoggedIn() {}
+    // save to local storage
+    const userString = JSON.stringify(this.user);
+    window.localStorage.setItem('user', userString);
+  }
+
+  clearSession() {
+    this.user.username = '';
+    this.user.loggedIn = false;
+    window.localStorage.removeItem('user');
+  }
+
+  isLoggedIn() {
+    return this.user.loggedIn;
+  }
 }
