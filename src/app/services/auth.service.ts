@@ -9,9 +9,24 @@ export class AuthService {
   redirectUrl = '';
   constructor(private backend: BackendService, private session: SessionService) {}
 
-  register(data) {}
+  register(data) {
+    return this.backend.register(data).then((response) => {
+      // should be able to pipe in "response" rather than "data.username"
+      return this.session.setSession(data.username);
+    });
+  }
 
-  login(loginData: { username: string; password: string }) {}
+  login(loginData: { username: string; password: string }) {
+    // 2nd line of promise wont execute if db rejects
+    return this.backend.login(loginData).then((response) => {
+      // should be able to pipe in "response" rather than "data.username"
+      return this.session.setSession(loginData.username);
+    });
+  }
 
-  logout() {}
+  logout() {
+    return this.backend.logout().then((response) => {
+      return this.session.clearSession();
+    });
+  }
 }
