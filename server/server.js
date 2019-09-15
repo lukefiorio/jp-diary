@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const urlParser = bodyParser.urlencoded({ extended: false });
 // redis
-// extra code added here to accomodate npm i redis
 const redis = require('redis');
 const redisStore = require('connect-redis')(session);
 // passport
@@ -18,6 +17,7 @@ const bcrypt = require('bcryptjs');
 
 // source data (routes)
 const login = require('./routes/login.js');
+const users = require('./routes/users.js');
 
 const app = express();
 
@@ -28,35 +28,23 @@ app.use(bodyParser.json());
 app.use(urlParser);
 app.use(cookieParser());
 
-// new redis
-let client = redis.createClient({
-  url: process.env.REDIS_URL,
-  secret: process.env.REDIS_SECRET,
-  resave: false,
-  saveUninitialized: false,
-});
+let client = redis.createClient({ url: process.env.REDIS_URL });
 
 app.use(
   session({
     store: new redisStore({ client }),
+    secret: process.env.REDIS_SECRET,
+    resave: false,
+    saveUninitialized: false,
   }),
 );
-
-// original redis
-// app.use(
-//   session({
-//     store: new redis({ url: process.env.REDIS_URL }),
-//     secret: process.env.REDIS_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//   }),
-// );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // route middleware
 app.use('/api/login', login);
+app.use('/api/users', users);
 
 // validate credentials
 passport.use(
