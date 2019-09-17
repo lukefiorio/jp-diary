@@ -9,6 +9,7 @@ router.route('/').get((req, res) => {
 });
 
 router.post('/', passport.authenticate('local'), (req, res) => {
+  console.log('req.user:', req.user);
   return res.json({ id: req.user.id, username: req.user.username });
 });
 

@@ -18,4 +18,12 @@ export class BackendService {
   logout() {
     return this.http.get('/api/logout').toPromise();
   }
+
+  showUsers() {
+    return this.http.get('/api/users').toPromise();
+  }
+
+  getProfile(): Promise<object> {
+    return this.http.get('/api/users').toPromise();
+  }
 }

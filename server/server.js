@@ -17,7 +17,11 @@ const bcrypt = require('bcryptjs');
 
 // source data (routes)
 const login = require('./routes/login.js');
+const logout = require('./routes/logout.js');
 const users = require('./routes/users.js');
+
+// source data (models)
+const User = require('./database/models/User');
 
 const app = express();
 
@@ -44,6 +48,7 @@ app.use(passport.session());
 
 // route middleware
 app.use('/api/login', login);
+app.use('/api/logout', logout);
 app.use('/api/users', users);
 
 // validate credentials
@@ -73,6 +78,17 @@ passport.use(
       });
   }),
 );
+
+// create session for user & send cookie
+passport.serializeUser(function(user, done) {
+  console.log('serializing');
+  return done(null, {
+    id: user.id,
+    username: user.username,
+    name: user.name,
+    email: user.email,
+  });
+});
 
 // will fire if session id/user (in session storage) + cookie (user's) && outside of public route
 passport.deserializeUser(function(user, done) {
