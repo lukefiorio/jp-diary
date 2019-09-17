@@ -8,9 +8,10 @@ router
   .route('/')
   // fetches all users
   .get((req, res) => {
-    new User()
-      .fetchAll({ withRelated: ['roles'] })
+    new User({ id: req.user.id })
+      .fetch({ withRelated: ['roles'] })
       .then((result) => {
+        console.log(result.toJSON());
         return res.send(result.toJSON());
       })
       .catch((err) => {

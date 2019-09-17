@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,17 @@ export class HomeComponent implements OnInit {
       age: 30,
     },
   ];
-  constructor() {}
+
+  userObj: any = [];
+
+  constructor(private backend: BackendService) {}
 
   ngOnInit() {}
+
+  showDetail() {
+    this.backend.showUsers().then((data: any) => {
+      console.log(data);
+      this.userObj = data;
+    });
+  }
 }

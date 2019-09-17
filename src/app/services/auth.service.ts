@@ -19,6 +19,7 @@ export class AuthService {
   login(loginData: { username: string; password: string }) {
     // 2nd line of promise wont execute if db rejects
     return this.backend.login(loginData).then((response) => {
+      console.log('*****************', response);
       // should be able to pipe in "response" rather than "data.username"
       return this.session.setSession(loginData.username);
     });

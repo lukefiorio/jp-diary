@@ -11,9 +11,10 @@ import { AppComponent } from './app/app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, ProfileComponent, LoginComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
