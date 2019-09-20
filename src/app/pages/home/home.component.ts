@@ -31,11 +31,4 @@ export class HomeComponent implements OnInit {
   constructor(private backend: BackendService) {}
 
   ngOnInit() {}
-
-  showDetail() {
-    this.backend.showUsers().then((data: any) => {
-      console.log(data);
-      this.userObj = data;
-    });
-  }
 }
