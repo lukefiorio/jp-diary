@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { EntryData } from './interface.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,9 @@ export class BackendService {
 
   getProfile(): Promise<object> {
     return this.http.get('/api/users').toPromise();
+  }
+
+  addEntry(newEntry: EntryData): Promise<object> {
+    return this.http.post('/api/entries', newEntry).toPromise();
   }
 }

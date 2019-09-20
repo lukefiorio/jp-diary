@@ -1,3 +1,23 @@
 <div class="page">
   <p>New entry form</p>
+
+  <div>
+    <form>
+      <div>
+        <label for="date">Date:</label>
+      </div>
+      <div>
+        <input type="date" name="date" [(ngModel)]="newEntry.date" />
+      </div>
+
+      <div>
+        <label for="body">Dear Diary...:</label>
+      </div>
+      <div>
+        <input type="textarea" name="body" [(ngModel)]="newEntry.body" />
+      </div>
+
+      <button (click)="submit()">Submit</button>
+    </form>
+  </div>
 </div>

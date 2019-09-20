@@ -19,6 +19,7 @@ const bcrypt = require('bcryptjs');
 const login = require('./routes/login.js');
 const logout = require('./routes/logout.js');
 const users = require('./routes/users.js');
+const entries = require('./routes/entries.js');
 
 // source data (models)
 const User = require('./database/models/User');
@@ -50,6 +51,7 @@ app.use(passport.session());
 app.use('/api/login', login);
 app.use('/api/logout', logout);
 app.use('/api/users', users);
+app.use('/api/entries', entries);
 
 // validate credentials
 passport.use(
