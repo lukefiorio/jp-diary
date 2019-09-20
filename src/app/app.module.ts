@@ -12,9 +12,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AddEntryComponent } from './pages/add-entry/add-entry.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, ProfileComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, ProfileComponent, LoginComponent, AddEntryComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
