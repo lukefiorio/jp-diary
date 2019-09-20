@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  login() {
+  newEntry() {
     return this.router.navigate(['/entry/new']);
   }
 }
