@@ -13,8 +13,8 @@
       <div>
         <label for="body">Dear Diary...:</label>
       </div>
-      <div>
-        <input type="textarea" name="body" [(ngModel)]="newEntry.body" />
+      <div class="entry-body">
+        <input class="entry-input" type="textarea" name="body" [(ngModel)]="newEntry.body" />
       </div>
 
       <button (click)="submit()">Submit</button>
